@@ -1,8 +1,8 @@
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import './Home.css'
-import img1 from '../images/jpg.webp';
-import img2 from '../images/1322324.webp';
+import img1 from '../../images/jpg.webp';
+import img2 from '../../images/1322324.webp';
 
 
 const Home = () => {
