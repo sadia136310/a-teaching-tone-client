@@ -5,8 +5,8 @@ import ErrorPage from "../../components/ErrorPage/ErrorPage";
 import Faq from "../../components/Faq/Faq";
 import Home from "../../components/Home/Home";
 import Main from "../../layouts/Main";
-import Login from "../../components/LogIn/LogIn/LogIn";
-import SignUp from "../../components/SignUp/SignUp/SignUp";
+import LogIn from "../../components/LogIn/LogIn/LogIn";
+import Register from "../../components/Register/Register/Register";
 
 export const routes=createBrowserRouter([
 {
@@ -37,11 +37,11 @@ export const routes=createBrowserRouter([
        },
        {
         path:'/login',
-        element:<Login></Login>
+        element:<LogIn></LogIn>
        },
        {
-        path:'/signup',
-        element:<SignUp></SignUp>
+        path:'/register',
+        element:<Register></Register>
        },
 
      
