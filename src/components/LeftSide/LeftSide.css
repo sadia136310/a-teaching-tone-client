@@ -1,0 +1,18 @@
+.category{
+    padding: 10px;
+    border: 1px solid purple;
+    text-decoration: none;
+    text-align: center;
+    font-size: larger;
+    font-weight: 700;
+    border-radius: 10px;
+    background-color: lavender;
+    margin-top: 20px;
+  
+}
+.link{
+
+    text-decoration: none;
+    color: black;
+    
+}

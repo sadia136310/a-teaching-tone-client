@@ -1,9 +1,30 @@
 import React from 'react';
+import { Row, Col } from 'react-bootstrap';
+import { useLoaderData } from 'react-router-dom';
+import LeftSide from '../LeftSide/LeftSide';
+import RightSide from '../RightSide/RightSide';
+
+
 
 const Course = () => {
+    const courses = useLoaderData();
     return (
-        <div>
-            hhhhhhhhh
+        <div className="m-5">
+            <container>
+                <Row>
+                    <Col lg={3}>
+                        <LeftSide></LeftSide>
+                    </Col>
+
+                    <Col lg={8}>
+                        <h2>All courses: {courses.length}</h2>
+                        {
+                            courses.map(course => <RightSide key={course.id} course={course}></RightSide>)
+                        }
+
+                    </Col>
+                </Row>
+            </container>
         </div>
     );
 };

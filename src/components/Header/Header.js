@@ -25,7 +25,7 @@ const Header = () => {
           <Nav className="mx-auto">
             <NavLink to='/home'>Home</NavLink>
 
-            <NavLink to='/courses'>Courses</NavLink>
+            <NavLink to='/course'>Courses</NavLink>
             <NavLink to='/faq'>FAQ</NavLink>
             <NavLink to='/blog'>Blog</NavLink>
 
