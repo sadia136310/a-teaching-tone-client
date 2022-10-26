@@ -1,14 +1,16 @@
 
 import logo from '../../images/logo.jpg';
 import Container from 'react-bootstrap/Container';
+import './Header.css';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import './Header.css'
-import { NavLink } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthProvider';
+import { NavLink } from 'react-router-dom';
 import { FaUser } from 'react-icons/fa';
 import { Button, Image } from 'react-bootstrap';
+
+
 
 
 const Header = () => {
@@ -16,24 +18,26 @@ const Header = () => {
 
   return (
     <div>
-      <Navbar bg="dark" variant="dark">
-        <Container>
-          <img className='logo' src={logo} alt="" />
+      <Navbar className="navbar"  expand="lg">
+        <Container fluid>
+        <img className='logo' src={logo} alt="" />
+          <Navbar.Brand className="title" >A Teaching Tone</Navbar.Brand>
+          <Navbar.Toggle aria-controls="navbarScroll" />
+          <Navbar.Collapse id="navbarScroll">
+            <Nav
+              className="me-auto my-2 my-lg-0"
+              style={{ maxHeight: '100px' }}
+              navbarScroll
+            >
+          
+              <NavLink to='/home'>Home</NavLink>
 
-          <Navbar.Brand href="#home">A Teaching Tone</Navbar.Brand>
+              <NavLink to='/course'>Courses</NavLink>
+              <NavLink to='/faq'>FAQ</NavLink>
+              <NavLink to='/blog'>Blog</NavLink>
+            </Nav>
 
-          <Nav className="mx-auto">
-            <NavLink to='/home'>Home</NavLink>
-
-            <NavLink to='/course'>Courses</NavLink>
-            <NavLink to='/faq'>FAQ</NavLink>
-            <NavLink to='/blog'>Blog</NavLink>
-
-            {/* <NavLink to='/signup'>SignUp</NavLink> */}
-          </Nav>
-
-
-          <NavLink>
+            <NavLink>
             {user ?
               <>{user.displayName}</>
               :
@@ -54,6 +58,7 @@ const Header = () => {
           }</NavLink>
 
 
+          </Navbar.Collapse>
         </Container>
       </Navbar>
     </div>
