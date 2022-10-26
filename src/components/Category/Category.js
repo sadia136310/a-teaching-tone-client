@@ -12,7 +12,7 @@ const Category = () => {
             <Card>
                 <Card.Img variant="top" src={course.image} />
                 <Card.Body>
-                    <Card.Title><h3>{course.title}</h3></Card.Title>
+                    <Card.Title><h2>{course.title}</h2></Card.Title>
                     <Card.Text>
                         {course.description}
                     </Card.Text>

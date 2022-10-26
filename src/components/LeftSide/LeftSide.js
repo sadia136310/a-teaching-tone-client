@@ -12,13 +12,13 @@ const LeftSide = () => {
     }, [])
     return (
         <div>
-            <h3>All Category: {categories.length} </h3>
+            {/* <h3>All Category: {categories.length} </h3> */}
             <div>
                 {
 
-                    categories.map(category => <p className='category'
+                    categories.map(category => <p
                         key={category.id}>
-                        <Link to={`/course/${category.id}`} className='link'>{category.name}</Link>
+                        <Link to={`/course/${category.id}`} className='link'><button  className='category'>{category.name}</button></Link>
                     </p>)
                 }
             </div>
