@@ -1,0 +1,12 @@
+.check{
+    margin-top: 90px;
+    margin-left: 35%;
+    margin-bottom: 100px;
+}
+
+@media only screen and (max-width: 767px) {
+   .check{
+   margin-left:20% ;
+    }
+  }
+  

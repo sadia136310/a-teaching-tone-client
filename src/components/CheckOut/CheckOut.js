@@ -2,12 +2,13 @@ import React from 'react';
 
 import Card from 'react-bootstrap/Card';
 import { useLoaderData } from 'react-router-dom';
+import './CheckOut.css'
 
 
 const CheckOut = () => {
     const { image, title, price } = useLoaderData()
     return (
-        <div className='w-25 mx-auto my-5 py-5'>
+        <div className='check'>
             <Card style={{ width: '18rem' }}>
                 <Card.Img variant="top" src={image} />
                 <Card.Body>

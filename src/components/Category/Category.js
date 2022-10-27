@@ -33,7 +33,7 @@ const Category = () => {
 
 
                 <Card className='card'>
-                    <p>    DownLoad pdf<HiDocument onClick={handlePdf} ></HiDocument></p>
+                    <p>DownLoad pdf<HiDocument onClick={handlePdf} ></HiDocument></p>
                     <h1 className='text-center color w-50'>{course.name}</h1>
                     <Card.Img variant="top" src={course.image} />
                     <Card.Body>
@@ -41,8 +41,8 @@ const Category = () => {
                         <Card.Text>
                             {course.description}
                         </Card.Text>
-                        
-                        <Button ><Link to={`/check/${course.id}`}>Get Premium Access</Link></Button>
+
+                      <Link to={`/check/${course.id}`}> <Button className='fw-bold'>Get Premium Access</Button> </Link>
                     </Card.Body>
                 </Card>
             </div>
