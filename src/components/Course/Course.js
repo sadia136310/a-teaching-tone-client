@@ -17,7 +17,7 @@ const Course = () => {
                     </Col>
 
                     <Col lg={8}>
-                        {/* <h2>All courses: {courses.length}</h2> */}
+                      
                         {
                             courses.map(course => <RightSide key={course.id} course={course}></RightSide>)
                         }

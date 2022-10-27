@@ -1,30 +1,52 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 const SignUp = () => {
-    const {createUser}=useContext(AuthContext);
+    const [error, setError] = useState('');
+    const { createUser, userProfileUpdate } = useContext(AuthContext);
 
     const handleSubmit = e => {
         e.preventDefault();
-        const form=e.target;
-        const name=form.name.value;
-        const email=form.email.value;
-        const photoURL=form.photoURL.value;
-        const password=form.password.value;
-        console.log(name,email,photoURL,password);
+        const form = e.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const photoURL = form.photoURL.value;
+        const password = form.password.value;
+   
 
-        createUser(email,password)
-        .then(result=>{
-            const user=result.user;
-            console.log(user);
-            form.reset();
-        })
-   .catch(error=>console.error(error))
+        createUser(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                setError('');
+              
+                handleUpdate(name,photoURL);
+                form.reset();
+            })
+            .catch(error => {
 
+                console.error(error);
+                setError(error.message)
+
+            })
     }
+    const handleUpdate = (name, photoURL) => {
+        const profile = {
+            displayName: name,
+            photoURL: photoURL
+        }
+        userProfileUpdate(profile)
+        .then(()=>{
+
+        })
+        .catch(error=>{
+            console.error(error);
+        })
+    }
+
     return (
         <div className="m-5 p-5">
             <h2 className='text-primary text-center mb-4'>Please Register here !!!</h2>
@@ -54,6 +76,9 @@ const SignUp = () => {
                 <Button variant="primary" type="submit">
                     Register
                 </Button>
+                <Form.Text className="text-danger">
+                    {error}
+                </Form.Text>
 
                 <p>Already Have an Account?.Please <Link to='/login'>logIn</Link> </p>
             </Form>

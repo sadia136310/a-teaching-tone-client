@@ -9,18 +9,24 @@ import { AuthContext } from '../../contexts/AuthProvider';
 import { NavLink } from 'react-router-dom';
 import { FaUser } from 'react-icons/fa';
 import { Button, Image } from 'react-bootstrap';
+import ToggoleButton from '../ToggleButton/ToggoleButton';
+
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
+
 
 
 
 
 const Header = () => {
   const { user, logout } = useContext(AuthContext);
+  console.log(user);
 
   return (
     <div>
-      <Navbar className="navbar"  expand="lg">
+      <Navbar className="navbar" expand="lg">
         <Container fluid>
-        <img className='logo' src={logo} alt="" />
+          <img className='logo' src={logo} alt="" />
           <Navbar.Brand className="title" >A Teaching Tone</Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
@@ -29,33 +35,43 @@ const Header = () => {
               style={{ maxHeight: '100px' }}
               navbarScroll
             >
-          
+
               <NavLink to='/home'>Home</NavLink>
 
               <NavLink to='/course'>Courses</NavLink>
               <NavLink to='/faq'>FAQ</NavLink>
               <NavLink to='/blog'>Blog</NavLink>
+
+
             </Nav>
+            <div className='toggle'><ToggoleButton rounded={true}></ToggoleButton></div>
+
+
+
+            <NavLink>{user?.uid ?
+              <>
+                <Image style={{ height: '30px' }} roundedCircle
+                  src={user?.photoURL}>
+                </Image>
+
+              </>
+              : <FaUser></FaUser>
+            }</NavLink>
+         <NavLink>   <p>{user?.displayName}</p></NavLink>
 
             <NavLink>
-            {user ?
-              <>{user.displayName}</>
-              :
-              <><NavLink to='/login'>LogIn</NavLink></>
+              {user?.uid ?
+                <div>
+                  {/* <>{user?.displayName}</> */}
+                  <Button onClick={logout}>LogOut</Button>
+                </div>
+                :
+                <><NavLink to='/login'>LogIn</NavLink></>
 
-            }
-          </NavLink>
+              }
+            </NavLink>
 
-          
-          <NavLink>{user ?
-            <>
-              <Image style={{ height: '30px' }} roundedCircle
-                src={user?.photoURL}>
-              </Image>
-              <Button onClick={logout}> Logout</Button>
-            </>
-            : <FaUser></FaUser>
-          }</NavLink>
+
 
 
           </Navbar.Collapse>

@@ -1,5 +1,5 @@
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { ButtonGroup } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -8,8 +8,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 const Login = () => {
+    const [error, setError] = useState('');
+
     const { providerLogin, signIn } = useContext(AuthContext);
-    const Navigate=useNavigate()
+    const Navigate = useNavigate()
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -21,9 +23,15 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
+                setError('');
                 Navigate('/');
             })
-            .catch(error => console.error(error))
+            .catch(error => {
+
+                console.error(error);
+                setError(error.message)
+
+            })
 
     }
 
@@ -37,14 +45,14 @@ const Login = () => {
             .catch(error => console.error(error))
     }
 
-    const githubProvider=new GithubAuthProvider();
-    const handleGithubSignIn=()=>{
+    const githubProvider = new GithubAuthProvider();
+    const handleGithubSignIn = () => {
         providerLogin(githubProvider)
-        .then(result => {
-            const user = result.user;
-            console.log(user);
-        })
-        .catch(error => console.error(error))
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => console.error(error))
     }
     return (
         <div className="m-5 p-5" >
@@ -53,9 +61,7 @@ const Login = () => {
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control type="email" name='email' placeholder="Enter email" />
-                    {/* <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
-                    </Form.Text> */}
+
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -66,7 +72,9 @@ const Login = () => {
                 <Button variant="primary" type="submit">
                     LogIn
                 </Button>
-
+                <Form.Text className="text-danger">
+                {error}
+                </Form.Text>
                 <p>You have no any Account?. Please <Link to='/register'>Register</Link> </p>
             </Form>
 

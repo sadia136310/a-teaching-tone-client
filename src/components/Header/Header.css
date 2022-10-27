@@ -10,6 +10,7 @@
     padding-right: 9px;
     border-radius: 9px;
 }
+
 nav a{
     text-decoration: none;
     margin-right: 15px;
@@ -19,4 +20,7 @@ nav a{
  nav a:hover{
     color: peru;
 
+}
+.toggle{
+    margin-right: 300px;
 }
