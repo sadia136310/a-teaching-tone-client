@@ -14,13 +14,9 @@ import ToggoleButton from '../ToggleButton/ToggoleButton';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 
-
-
-
-
 const Header = () => {
   const { user, logout } = useContext(AuthContext);
-  console.log(user);
+
 
   return (
     <div>
@@ -50,14 +46,30 @@ const Header = () => {
 
             <NavLink>{user?.uid ?
               <>
-                <Image style={{ height: '30px' }} roundedCircle
+                {['bottom'].map((placement) => (
+                  <OverlayTrigger
+                    key={placement}
+                    placement={placement}
+                    overlay={
+                      <Tooltip id={`tooltip-${placement}`}>
+                        {user?.displayName} 
+                      </Tooltip>
+                    }
+                  >
+                    {/* <Button variant="secondary">Tooltip on {placement}</Button> */}
+
+                       <Image style={{ height: '30px' }} roundedCircle
                   src={user?.photoURL}>
                 </Image>
+                  </OverlayTrigger>
+                ))}
+
+             
 
               </>
               : <FaUser></FaUser>
             }</NavLink>
-         <NavLink>   <p>{user?.displayName}</p></NavLink>
+            <NavLink>   <p>{user?.displayName}</p></NavLink>
 
             <NavLink>
               {user?.uid ?
@@ -70,9 +82,6 @@ const Header = () => {
 
               }
             </NavLink>
-
-
-
 
           </Navbar.Collapse>
         </Container>

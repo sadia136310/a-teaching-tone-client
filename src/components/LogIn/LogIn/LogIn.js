@@ -3,15 +3,20 @@ import React, { useContext, useState } from 'react';
 import { ButtonGroup } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import toast from 'react-hot-toast';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 const Login = () => {
     const [error, setError] = useState('');
 
     const { providerLogin, signIn } = useContext(AuthContext);
-    const Navigate = useNavigate()
+    const navigate = useNavigate();
+
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/course";
+
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -24,7 +29,8 @@ const Login = () => {
                 console.log(user);
                 form.reset();
                 setError('');
-                Navigate('/');
+                navigate(from, { replace: true });
+                toast.success('Successfully Login!')
             })
             .catch(error => {
 
@@ -41,6 +47,8 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                navigate(from, { replace: true });
+                toast.success('Successfully Login!')
             })
             .catch(error => console.error(error))
     }
@@ -51,6 +59,8 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                navigate(from, { replace: true });
+                toast.success('Successfully Login!')
             })
             .catch(error => console.error(error))
     }
@@ -73,7 +83,7 @@ const Login = () => {
                     LogIn
                 </Button>
                 <Form.Text className="text-danger">
-                {error}
+                    {error}
                 </Form.Text>
                 <p>You have no any Account?. Please <Link to='/register'>Register</Link> </p>
             </Form>

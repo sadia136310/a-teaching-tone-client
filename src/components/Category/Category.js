@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import './category.css';
@@ -13,15 +13,15 @@ const Category = () => {
 
 
     const handlePdf = () => {
-        const doc= jsPDF('landscape', 'px','a4', 'false');
-            doc.addImage(course.image, 65,20,500,400);
-           doc.addPage()
-           doc.text(course.name, 60,60)
-           doc.text(course.price, 60,80)
-           doc.text(course.description.slice(0,200), 60,100)
+        const doc = jsPDF('landscape', 'px', 'a4', 'false');
+        doc.addImage(course.image, 65, 20, 500, 400);
+        doc.addPage()
+        doc.text(course.name, 60, 60)
+        doc.text(course.price, 60, 80)
+        doc.text(course.description.slice(0, 200), 60, 100)
 
 
-            doc.save('a.pdf');
+        doc.save('a.pdf');
 
     }
 
@@ -33,7 +33,7 @@ const Category = () => {
 
 
                 <Card className='card'>
-          <p>    DownLoad pdf<HiDocument onClick={handlePdf} ></HiDocument></p>
+                    <p>    DownLoad pdf<HiDocument onClick={handlePdf} ></HiDocument></p>
                     <h1 className='text-center color w-50'>{course.name}</h1>
                     <Card.Img variant="top" src={course.image} />
                     <Card.Body>
@@ -41,9 +41,8 @@ const Category = () => {
                         <Card.Text>
                             {course.description}
                         </Card.Text>
-
-                        <h2>Price: {course.price}</h2>
-                        <Button variant="primary">Get Premium Access</Button>
+                        
+                        <Button ><Link to={`/check/${course.id}`}>Get Premium Access</Link></Button>
                     </Card.Body>
                 </Card>
             </div>

@@ -8,6 +8,8 @@ import Main from "../../layouts/Main";
 import LogIn from "../../components/LogIn/LogIn/LogIn";
 import Register from "../../components/Register/Register/Register";
 import Category from "../../components/Category/Category";
+import CheckOut from "../../components/CheckOut/CheckOut";
+import PrivateRoute from "../PrivateRoute";
 
 export const routes=createBrowserRouter([
 {
@@ -49,6 +51,12 @@ export const routes=createBrowserRouter([
        {
         path:'/register',
         element:<Register></Register>
+       },
+       {
+        path:'/check/:id',
+        element:<PrivateRoute><CheckOut></CheckOut></PrivateRoute>,
+        loader: ({params}) => fetch(`https://a-teaching-tone-server.vercel.app/check/${params.id}`)
+     
        },
 
      
